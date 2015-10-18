@@ -9,7 +9,10 @@ float treasure_x;
 float treasure_y;
 float enemy_x;
 float enemy_y;
-int time;
+float bg1_x;
+float bg1_y;
+float bg2_x;
+float bg2_y;
 void setup() {
    size(640,480) ;
    bg1=loadImage("img/bg1.png");
@@ -23,17 +26,21 @@ void setup() {
    treasure_y=random(25,440);
    enemy_y=random(420);
    enemy_x=0;
-   time=2;
+   bg1_x=0;
+   bg1_y=0;
+   bg2_x=640;
+   bg2_y=0;
   }
-
 void draw() {
-   background(255);
-   if(time%2.0==1){
-   image(bg2,0,0);
-   } 
-   if(time%2.0==0){ 
-   image(bg1,0,0);
-   } 
+  background(255);
+  if(bg1_x>-640){
+                 image(bg2,bg1_x-640,bg2_y);
+                 image(bg1,bg1_x--,bg1_y);
+  }else{
+                 bg1_x=640;
+                 image(bg1,bg1_x--,bg1_y);
+  }
+  image(bg2,bg1_x+640,bg2_y);
   image(enemy,enemy_x++,enemy_y);
   image(fighter,590,25);
   fill(255,0,0);
@@ -41,7 +48,4 @@ void draw() {
   image(hp,0,0);
   image(treasure,treasure_x,treasure_y);
   enemy_x%=width;
-  if(enemy_x==639){
-  time++;
   }
-}
