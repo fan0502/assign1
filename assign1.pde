@@ -38,6 +38,7 @@ void draw() {
                  image(bg1,bg1_x--,bg1_y);
   }else{
                  bg1_x=640;
+                 image(bg2,bg1_x-640,bg2_y);
                  image(bg1,bg1_x--,bg1_y);
   }
   image(bg2,bg1_x+640,bg2_y);
